@@ -20,14 +20,17 @@ class MainUiState {
     var distance by mutableStateOf("")
         internal set
 
-    internal var time by mutableStateOf(DateTime())
+    var calculatorStateDropdownExpanded by mutableStateOf(false)
+        internal set
 
-    val hours by derivedStateOf { "${time.millis.hours}" }
-    val minutes by derivedStateOf { "${time.minuteOfHour()}" }
-    val seconds by derivedStateOf { "${time.secondOfMinute()}" }
+    internal var time by mutableStateOf(DateTime().withMillis(0).withMinuteOfHour(0))
+
+    val hours by derivedStateOf { "${time.millis.hours.inWholeHours}" }
+    val minutes by derivedStateOf { "${time.minuteOfHour().get()}" }
+    val seconds by derivedStateOf { "${time.secondOfMinute().get()}" }
 
     internal fun setResult(result: Double) {
-        when(currentMode) {
+        when (currentMode) {
             Calculator.Mode.GET_SPEED -> speed = "$result"
             Calculator.Mode.GET_DISTANCE -> distance = "$result"
             Calculator.Mode.GET_TIME -> time.withMillis(result.toLong())

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SpeedCalculator</string>
+
+    <string name="option_solve_for_speed">Solve for speed</string>
+    <string name="option_solve_for_distance">Solve for distance</string>
+    <string name="option_solve_for_time">Solve for time</string>
 </resources>
